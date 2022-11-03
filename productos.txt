@@ -1,0 +1,42 @@
+[
+  {
+    "Nombre": "mouse",
+    "Precio": "1500",
+    "id": 1
+  },
+  {
+    "Nombre": "tarjeta",
+    "Precio": "2000",
+    "id": 2
+  },
+  {
+    "Nombre": "monitor",
+    "Precio": 32500,
+    "id": 3
+  },
+  {
+    "Nombre": "Mic",
+    "Precio": 500,
+    "id": 4
+  },
+  {
+    "Nombre": "Lapiz",
+    "Precio": "3500",
+    "id": 5
+  },
+  {
+    "Nombre": "Goma",
+    "Precio": "340",
+    "id": 6
+  },
+  {
+    "Nombre": "Mic",
+    "Precio": 500,
+    "id": 7
+  },
+  {
+    "Nombre": "Botella",
+    "Precio": 1000,
+    "id": 8
+  }
+]
