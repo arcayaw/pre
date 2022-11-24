@@ -1,0 +1,47 @@
+[
+  {
+    "id":1,
+    "timestamp":"12/11/2022",
+    "products":[
+      {
+    "Nombre": "mouse",
+    "Descripcion": "Mouse Logi",
+    "Thumbnail": "https://www.imagen3.com",
+    "Precio": "3500",
+    "Stock": "5",
+    "id": 3
+  },
+  {
+    "Nombre": "mouse",
+    "Descripcion": "Mouse Logi",
+    "Thumbnail": "https://www.imagen3.com",
+    "Precio": "3500",
+    "Stock": "5",
+    "id": 4
+  }],
+
+  },
+  {
+    "id":2,
+    "timestamp":"12/11/2022",
+    "products":[
+      {
+    "id": 1,
+    "Nombre": "Prueba5",
+    "Descripcion": "item Prueba v2",
+    "Thumbnail": "https://www.imagen.com",
+    "Precio": "1500",
+    "Stock": "3"
+  },
+  {
+    "Nombre": "ProductoV2",
+    "Descripcion": "Producto de prueba2",
+    "Thumbnail": "https://www.imagen2.com",
+    "Precio": "3400",
+    "Stock": "2",
+    "id": 2
+  },
+    ],
+    
+  }
+]
