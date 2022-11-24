@@ -1,38 +1,44 @@
 
+const { log } = require("console");
 const fs = require("fs");
 
-let date = new Date();
+
+const date = new Date();
 let newDate = date.toLocaleDateString();
 let newHour = date.toLocaleTimeString(('en-US'))
 const actualDate = (`${newDate} - ${newHour}`)
 
 
 
-class Contenedor {
+class ContenedorCarrito {
   constructor(name) {
     this.filename = name;
   }
 
+
+
+
+
   /* agregamos prodcuto nuevo */
 
-  async save(product) {
+  async save(cart) {
     try {
       if (fs.existsSync(this.filename)) {
-        const productos = await this.getAll();
-        if (productos.length > 0) {
+        const carritos = await this.getAll();
+        if (carritos.length > 0) {
           //agregar un producto adicional
-          const lastId = productos[productos.length - 1].id + 1;
-          product.id = lastId;
-          productos.push(product);
-          await fs.promises.writeFile(this.filename, JSON.stringify(productos, null, 2));
+          const lastId = carritos[carritos.length - 1].id + 1;
+          cart.id = lastId;
+          carritos.push(cart);
+          await fs.promises.writeFile(this.filename, JSON.stringify(carritos, null, 2));
         } else {
           //agregamos un primer producto
-          product.id = 1;
-          await fs.promises.writeFile(this.filename, JSON.stringify([product], null, 2));
+          cart.id = 1;
+          await fs.promises.writeFile(this.filename, JSON.stringify([cart], null, 2));
         }
       } else {
-        product.id = 1;
-        await fs.promises.writeFile(this.filename, JSON.stringify([product], null, 2));
+        cart.id = 1;
+        await fs.promises.writeFile(this.filename, JSON.stringify([cart], null, 2));
       }
     } catch (error) {
       return "El producto no pudo ser guardado";
@@ -44,8 +50,8 @@ class Contenedor {
     try {
       const contenido = await fs.promises.readFile(this.filename, "utf-8");
       if (contenido.length > 0) {
-        const productos = JSON.parse(contenido);
-        return productos;
+        const carritos = JSON.parse(carritos);
+        return carritos;
       } else {
         return [];
       }
@@ -53,15 +59,14 @@ class Contenedor {
       return "El archivo no pudo ser leido";
     }
   }
-
   //mostramos producto segun el id
   async getById(id) {
     try {
       //obtener todos los productos.
-      const productos = await this.getAll();
+      const carritos = await this.getAll();
       //busca producto por el id
-      const producto = productos.find(elemento => elemento.id === id);
-      return producto;
+      const carrito = carritos.find(elemento => elemento.id === id);
+      return carrito;
     } catch (error) {
       return "El producto no ha sido encontrado";
     }
@@ -70,14 +75,14 @@ class Contenedor {
   //actualizamos producto segun el ID 
   async updateById(id, body) {
     try {
-      const productos = await this.getAll();
-      const productPos = productos.findIndex(elm => elm.id === id);
-      productos[productPos] = {
+      const carritos = await this.getAll();
+      const cartPos = carritos.findIndex(elm => elm.id === id);
+      carritos[cartPos] = {
         id: id,
         ...body
       };
-      await fs.promises.writeFile(this.filename, JSON.stringify(productos, null, 2))
-      return productos;
+      await fs.promises.writeFile(this.filename, JSON.stringify(carritos, null, 2))
+      return carritos;
     } catch (error) {
       console.log(error)
     }
@@ -85,12 +90,12 @@ class Contenedor {
   //borramos segun iD
   deleteById = async (id) => {
     try {
-      const productos = await this.getAll();
-      const newProducts = productos.filter(item => item.id !== id);
-      await fs.promises.writeFile(this.filename, JSON.stringify(newProducts, null, 2));
-      return `El producto con el id ${id} fue elimnado`;
+      const carritos = await this.getAll();
+      const newCart = carritos.filter(item => item.id !== id);
+      await fs.promises.writeFile(this.filename, JSON.stringify(newCart, null, 2));
+      return `El Carrito con el id ${id} fue elimnado`;
     } catch (error) {
-      return "El elemento NO se a ha podido eliminar"
+      return "El Carrito NO se a ha podido eliminar"
     }
   }
 
@@ -99,10 +104,10 @@ class Contenedor {
   }
 }
 
-module.exports = Contenedor
+module.exports = ContenedorCarrito
 
 
-const manejadorProductos = new Contenedor("productos.txt");
+const manejadorCarritos = new ContenedorCarrito("carritos.txt");
 // console.log(manejadorProductos);
 
 
